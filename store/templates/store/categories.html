@@ -1,0 +1,13 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Categories</h2>
+<ul class="list-group">
+    {% for category in categories %}
+    <li class="list-group-item">
+        <strong>{{ category.name }}</strong>
+        <br><a href="{% url 'category_books' category.id %}">View Books</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+a

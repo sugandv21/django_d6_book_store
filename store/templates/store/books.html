@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Books</h2>
+<ul class="list-group">
+    {% for book in books %}
+    <li class="list-group-item">
+        <strong>{{ book.title }}</strong> - Rs.{{ book.price }}
+        <br>Author: {{ book.author.name }}
+        <br>Categories: 
+        {% for cat in book.categories.all %}
+            {{ cat.name }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+c

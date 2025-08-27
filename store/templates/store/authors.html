@@ -1,0 +1,12 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Authors</h2>
+<ul class="list-group">
+    {% for author in authors %}
+    <li class="list-group-item">
+        <strong>{{ author.name }}</strong> - {{ author.bio }}
+        <br><a href="{% url 'author_books' author.id %}">View Books</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

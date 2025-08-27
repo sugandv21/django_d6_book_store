@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Books by {{ author.name }}</h2>
+<ul class="list-group">
+    {% for book in books %}
+    <li class="list-group-item">{{ book.title }} - Rs.{{ book.price }}</li>
+    {% empty %}
+    <li class="list-group-item">No books available.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

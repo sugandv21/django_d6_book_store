@@ -1,0 +1,43 @@
+(venv) PS D:\python\Django\Day_6\online_bookstore> python manage.py shell
+9 objects imported automatically (use -v 2 for details).
+
+Python 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from store.models import Author, Book, Category
+>>> author = Author.objects.create(name="J.K. Rowling", bio="Author of Harry Potter")
+>>> fiction = Category.objects.create(name="Fiction")
+>>> fantasy = Category.objects.create(name="Fantasy")
+>>> book = Book.objects.create(title="Harry Potter", price=29.99, author=author)
+>>> book.categories.add(fiction, fantasy)
+>>> Author.objects.all()
+<QuerySet [<Author: J.K. Rowling>]>
+>>> author.books.all()
+<QuerySet [<Book: Harry Potter>]>
+>>> fiction.books.all()
+<QuerySet [<Book: Harry Potter>]>
+>>> Book.objects.get(title="Harry Potter")
+<Book: Harry Potter>
+>>> book.price = 35.50
+>>> book.save
+<bound method Model.save of <Book: Harry Potter>>
+
+
+>>> from store.models import Book
+>>> book = Book.objects.get(id=1)
+>>> book.price = 1500
+>>> book.save()
+
+
+>>> from store.models import Author, Book, Category
+>>> author = Author.objects.create(name="George R. R. Martin", bio="Author of Game of Thrones") 
+>>> adventure = Category.objects.create(name="Adventure")
+>>> drama = Category.objects.create(name="Drama")
+>>> book1 = Book.objects.create(title="A Game of Thrones", price=2000, author=author)
+>>> book1.categories.add(adventure, drama)
+>>> book2 = Book.objects.create(title="A Clash of Kings", price=1800, author=author)
+>>> book2.categories.add(adventure, drama)
+>>> book3 = Book.objects.create(title="A Storm of Swords", price=1900, author=author)
+>>> book3.categories.add(adventure)
+>>> author.books.all()
+<QuerySet [<Book: A Game of Thrones>, <Book: A Clash of Kings>, <Book: A Storm of Swords>]>
